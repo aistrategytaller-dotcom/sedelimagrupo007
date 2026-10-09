@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registrar carrera - Universidad César Vallejo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="card card-wide">
+    <header>
+      <p class="badge">Administración</p>
+      <h1>Registrar carrera</h1>
+      <p class="subtitle">Agrega una carrera profesional a la oferta académica.</p>
+    </header>
+
+    <form id="formulario" class="formulario" novalidate>
+      <label>
+        Nombre de la universidad
+        <input type="text" name="nombre_universidad" maxlength="150" required />
+      </label>
+
+      <label>
+        Carrera profesional
+        <input type="text" name="carrera_profesional" maxlength="150" required />
+      </label>
+
+      <button type="submit" class="btn btn-primary" id="enviar">Guardar</button>
+      <p class="mensaje" id="mensaje" role="status"></p>
+    </form>
+
+    <footer class="pie">
+      <a class="btn btn-secondary" href="carreras.html">Ver carreras</a>
+      <a class="btn btn-secondary" href="index.html">Volver al inicio</a>
+    </footer>
+  </main>
+  <script src="registro.js"></script>
+</body>
+</html>

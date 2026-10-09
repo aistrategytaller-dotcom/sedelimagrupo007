@@ -138,6 +138,49 @@ h1 {
   color: #1f2937;
 }
 
+.formulario {
+  display: grid;
+  gap: 1rem;
+}
+
+.formulario label {
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.formulario input {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font: inherit;
+}
+
+.formulario input:focus {
+  outline: 2px solid #1565c0;
+  border-color: #1565c0;
+}
+
+.formulario button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.mensaje {
+  min-height: 1.2rem;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.mensaje.exito {
+  color: #15803d;
+}
+
+.mensaje.error {
+  color: #b91c1c;
+}
+
 .lista-carreras li.estado {
   border-left-color: #9ca3af;
   background: #f3f4f6;

@@ -181,6 +181,43 @@ h1 {
   color: #b91c1c;
 }
 
+.carreras {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.carreras h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+  color: #374151;
+  text-align: center;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.tabla th,
+.tabla td {
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.tabla th {
+  background: #e3f2fd;
+  color: #0a3d7a;
+}
+
+.tabla td.estado {
+  text-align: center;
+  color: #6b7280;
+  font-style: italic;
+}
+
 .lista-carreras li.estado {
   border-left-color: #9ca3af;
   background: #f3f4f6;

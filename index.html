@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main class="card">
+  <main class="card card-wide">
     <header>
       <p class="badge">Universidad César Vallejo</p>
       <h1>¡Bienvenido/a, estudiante!</h1>
@@ -25,6 +25,21 @@
       <a class="btn btn-secondary" href="carreras.html">Ver carreras profesionales</a>
     </section>
 
+    <section class="carreras">
+      <h2>Carreras profesionales</h2>
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th scope="col">Universidad</th>
+            <th scope="col">Carrera profesional</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpo-tabla">
+          <tr><td colspan="2" class="estado">Cargando carreras...</td></tr>
+        </tbody>
+      </table>
+    </section>
+
     <section class="social">
       <h2>Síguenos en nuestras redes</h2>
       <ul>
@@ -35,5 +50,61 @@
       </ul>
     </section>
   </main>
+  <script>
+    const SUPABASE_URL = "https://ivuoojsefrhcktbcsama.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_vrc2DojezDMDb-ucN93W_Q_weAs_21B";
+
+    async function cargarTablaCarreras() {
+      const cuerpo = document.getElementById("cuerpo-tabla");
+      const url = `${SUPABASE_URL}/rest/v1/universidad_carreras?select=nombre_universidad,carrera_profesional&order=carrera_profesional.asc`;
+
+      try {
+        const respuesta = await fetch(url, {
+          headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` },
+        });
+        if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
+
+        const filas = await respuesta.json();
+        const celdaEstado = (texto) => {
+          const td = document.createElement("td");
+          td.colSpan = 2;
+          td.className = "estado";
+          td.textContent = texto;
+          const tr = document.createElement("tr");
+          tr.appendChild(td);
+          return tr;
+        };
+
+        if (filas.length === 0) {
+          cuerpo.replaceChildren(celdaEstado("No hay carreras registradas por ahora."));
+          return;
+        }
+
+        cuerpo.replaceChildren(
+          ...filas.map((fila) => {
+            const tr = document.createElement("tr");
+            const tdUniversidad = document.createElement("td");
+            tdUniversidad.textContent = fila.nombre_universidad;
+            const tdCarrera = document.createElement("td");
+            tdCarrera.textContent = fila.carrera_profesional;
+            tr.append(tdUniversidad, tdCarrera);
+            return tr;
+          })
+        );
+      } catch (error) {
+        console.error(error);
+        cuerpo.replaceChildren();
+        const tr = document.createElement("tr");
+        const td = document.createElement("td");
+        td.colSpan = 2;
+        td.className = "estado";
+        td.textContent = "No se pudieron cargar las carreras. Intenta nuevamente más tarde.";
+        tr.appendChild(td);
+        cuerpo.appendChild(tr);
+      }
+    }
+
+    cargarTablaCarreras();
+  </script>
 </body>
 </html>
